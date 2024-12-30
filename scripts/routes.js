@@ -1,22 +1,29 @@
-angular.module('MenuApp').config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/');
-  
-    $stateProvider
-      .state('home', {
-        url: '/',
-        templateUrl: 'home.html',
-        controller: 'HomeController as homeCtrl'
-      })
-      .state('categories', {
-        url: '/categories.html',
-        templateUrl: 'categories.html',
-        controller: 'CategoriesController as categoriesCtrl'
-      })
-      .state('items', {
-        url: '/items/{categoryShortName}',
-        templateUrl: 'items.html',
-        controller: 'ItemsController as itemsCtrl'
-      });
-  }]);
-  
+angular.module('MenuApp')
+.config(function($stateProvider, $urlRouterProvider) {
+  $urlRouterProvider.otherwise('/');
+
+  $stateProvider
+    .state('home', {
+      url: '/',
+      templateUrl: 'home.html'
+    })
+    .state('categories', {
+      url: '/categories',
+      template: '<categories categories=$resolve.categories></categories>',
+      resolve: {
+        categories: ['MenuDataService', function(MenuDataService) {
+          return MenuDataService.getCategories();
+        }]
+      }
+    })
+    .state('items', {
+      url: '/items/{categoryShortName}',
+      template: '<items items="$resolve.items"></items>',
+      resolve: {
+        items: ['$stateParams','MenuDataService', function($stateParams, MenuDataService) {
+          return MenuDataService.getItemsForCategory($stateParams.categoryShortName);
+        }
+      ]}
+    });
+});
   
