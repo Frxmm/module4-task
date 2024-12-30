@@ -4,17 +4,17 @@ angular.module('MenuApp').config(['$stateProvider', '$urlRouterProvider', functi
     $stateProvider
       .state('home', {
         url: '/',
-        templateUrl: '../home.html',
+        templateUrl: '/home.html',
         controller: 'HomeController as homeCtrl'
       })
       .state('categories', {
         url: '/categories',
-        templateUrl: '../categories.html',
+        templateUrl: '/categories.html',
         controller: 'CategoriesController as categoriesCtrl'
       })
       .state('items', {
         url: '/items/{categoryShortName}',
-        templateUrl: '../items.html',
+        templateUrl: '/items.html',
         controller: 'ItemsController as itemsCtrl'
       });
   }]);
