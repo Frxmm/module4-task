@@ -1,0 +1,10 @@
+<div class="container">
+    <h1>Items in Category: {{ itemsCtrl.categoryShortName }}</h1>
+    <div class="grid-container">
+      <div class="grid-item item" ng-repeat="item in itemsCtrl.items">
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.description }}</p>
+      </div>
+    </div>
+  </div>
+  

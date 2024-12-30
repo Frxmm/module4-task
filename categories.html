@@ -1,0 +1,11 @@
+<div class="container">
+    <h1>Menu Categories</h1>
+    <div class="grid-container">
+      <div class="grid-item category" ng-repeat="category in categoriesCtrl.categories">
+        <a ui-sref="items({ categoryShortName: category.shortName })">
+          {{ category.name }}
+        </a>
+      </div>
+    </div>
+  </div>
+  
